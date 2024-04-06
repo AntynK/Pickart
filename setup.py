@@ -17,5 +17,5 @@ setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     install_requires=["pygame>=2.1.2"],
-    url=""
+    url="https://github.com/AntynK/Pickart"
 )
