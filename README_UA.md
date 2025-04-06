@@ -1,5 +1,5 @@
 # Pickart
-#### [English version](README.md)
+#### [English version](https://github.com/AntynK/Pickart/blob/main/README.md)
 
 Pickart - це формат файлу який використовує гра [Colouring art](https://github.com/AntynK/ColouringArt) для збереження зображень.
 
