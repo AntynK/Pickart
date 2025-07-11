@@ -2,8 +2,7 @@ from pathlib import Path
 
 from argparse import ArgumentParser
 
-from pickart.converter import convert_to_pickart
-from pickart.converter import convert_to_png
+from pickart import converter
 
 parser = ArgumentParser()
 
@@ -23,6 +22,18 @@ parser.add_argument(
 args = parser.parse_args()
 
 
+def convert_pickart_to_png(input_dir: Path, output_dir: Path):
+    for filename in input_dir.glob("*.pickart"):
+        print(f"Converting '{filename}' to png")
+        converter.convert_to_png(filename, output_dir)
+
+
+def convert_png_to_pickart(input_dir: Path, output_dir: Path):
+    for filename in input_dir.glob("*.png"):
+        print(f"Converting '{filename}' to pickart")
+        converter.convert_to_pickart(filename, output_dir)
+
+
 def main():
     input_dir: Path = Path(args.i)
     output_dir: Path = Path(args.o)
@@ -32,13 +43,9 @@ def main():
         return
 
     if args.m == "to_pickart":
-        for filename in input_dir.glob("*.png"):
-            print(f"Converting '{filename}' to pickart")
-            convert_to_pickart(filename, output_dir)
+        convert_png_to_pickart(input_dir, output_dir)
     elif args.m == "to_png":
-        for filename in input_dir.glob("*.pickart"):
-            print(f"Converting '{filename}' to png")
-            convert_to_png(filename, output_dir)
+        convert_pickart_to_png(input_dir, output_dir)
 
 
 main()

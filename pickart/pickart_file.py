@@ -45,6 +45,7 @@ class PickartFile:
         Raises:
             ValueError: if `filepath` or `file_data` has wrong type.
         """
+
         self.stdo = PickartFile._STDO
         if stdo is not None:
             self.stdo = stdo
@@ -74,7 +75,7 @@ class PickartFile:
         try:
             with GzipFile(self.filepath) as file:
                 self._data = PickartFileData(**load(file))
-                version: int = self._data.info.get("version", None)
+                version: int = self._data.info.get("version", -1)
                 if version != PICKART_VERSON:
                     raise BadPickartFile(f"File version: '{version}' is not supported.")
                 if any(i <= 0 for i in self._data.info.get("size", (0, 0))):
